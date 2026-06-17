@@ -5,94 +5,75 @@
         </h2>
     </x-slot>
 
-    @extends('layouts.app')
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-    @section('content')
-
-        <div class="container">
-
-            <h2 class="mb-4">
-                Dashboard Inventory
+            <h2 class="text-2xl font-bold mb-4">
+                Dashboard Admin
             </h2>
 
-            <div class="row">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
-                <div class="col-md-3 mb-3">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h6>Total Produk</h6>
-                            <h2>{{ $totalProducts }}</h2>
-                        </div>
-                    </div>
+                <div class="bg-white shadow rounded p-4">
+                    <h6>Total Produk</h6>
+                    <h2 class="text-3xl font-bold">
+                        {{ $totalProducts }}
+                    </h2>
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h6>Produk Available</h6>
-                            <h2>{{ $availableProducts }}</h2>
-                        </div>
-                    </div>
+                <div class="bg-white shadow rounded p-4">
+                    <h6>Produk Available</h6>
+                    <h2 class="text-3xl font-bold">
+                        {{ $availableProducts }}
+                    </h2>
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h6>Produk Sold Out</h6>
-                            <h2>{{ $soldOutProducts }}</h2>
-                        </div>
-                    </div>
+                <div class="bg-white shadow rounded p-4">
+                    <h6>Produk Sold Out</h6>
+                    <h2 class="text-3xl font-bold">
+                        {{ $soldOutProducts }}
+                    </h2>
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h6>Total Sales</h6>
-                            <h2>{{ $totalSales }}</h2>
-                        </div>
-                    </div>
+                <div class="bg-white shadow rounded p-4">
+                    <h6>Total Sales</h6>
+                    <h2 class="text-3xl font-bold">
+                        {{ $totalSales }}
+                    </h2>
                 </div>
 
             </div>
 
-            <div class="row mt-2">
+            <div class="bg-white shadow rounded p-6 mt-6">
+                <h5 class="text-lg font-semibold">
+                    Total Revenue
+                </h5>
 
-                <div class="col-md-12">
-                    <div class="card shadow">
-
-                        <div class="card-body">
-
-                            <h5>Total Revenue</h5>
-
-                            <h1>
-                                Rp {{ number_format($totalRevenue, 0, ',', '.') }}
-                            </h1>
-
-                        </div>
-
-                    </div>
-                </div>
-
+                <h1 class="text-4xl font-bold mt-2">
+                    Rp {{ number_format($totalRevenue, 0, ',', '.') }}
+                </h1>
             </div>
 
-            <div class="card shadow mt-4">
+            <div class="bg-white shadow rounded mt-6">
 
-                <div class="card-header">
-                    Transaksi Terbaru
+                <div class="p-4 border-b">
+                    <h5 class="font-semibold">
+                        Transaksi Terbaru
+                    </h5>
                 </div>
 
-                <div class="card-body">
+                <div class="p-4 overflow-x-auto">
 
-                    <table class="table table-bordered">
+                    <table class="min-w-full border">
 
                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Customer</th>
-                                <th>Product</th>
-                                <th>Qty</th>
-                                <th>Total</th>
-                                <th>Cashier</th>
+                            <tr class="bg-gray-100">
+                                <th class="border px-4 py-2">No</th>
+                                <th class="border px-4 py-2">Customer</th>
+                                <th class="border px-4 py-2">Product</th>
+                                <th class="border px-4 py-2">Qty</th>
+                                <th class="border px-4 py-2">Total</th>
+                                <th class="border px-4 py-2">Cashier</th>
                             </tr>
                         </thead>
 
@@ -100,39 +81,39 @@
 
                             @forelse($latestSales as $sale)
 
-                                <tr>
+                            <tr>
+                                <td class="border px-4 py-2">
+                                    {{ $loop->iteration }}
+                                </td>
 
-                                    <td>{{ $loop->iteration }}</td>
+                                <td class="border px-4 py-2">
+                                    {{ $sale->customer_name }}
+                                </td>
 
-                                    <td>
-                                        {{ $sale->customer_name }}
-                                    </td>
+                                <td class="border px-4 py-2">
+                                    {{ $sale->product->product_name }}
+                                </td>
 
-                                    <td>
-                                        {{ $sale->product->product_name }}
-                                    </td>
+                                <td class="border px-4 py-2">
+                                    {{ $sale->quantity }}
+                                </td>
 
-                                    <td>
-                                        {{ $sale->quantity }}
-                                    </td>
+                                <td class="border px-4 py-2">
+                                    Rp {{ number_format($sale->total,0,',','.') }}
+                                </td>
 
-                                    <td>
-                                        Rp {{ number_format($sale->total, 0, ',', '.') }}
-                                    </td>
-
-                                    <td>
-                                        {{ $sale->user->name }}
-                                    </td>
-
-                                </tr>
+                                <td class="border px-4 py-2">
+                                    {{ $sale->user->name }}
+                                </td>
+                            </tr>
 
                             @empty
 
-                                <tr>
-                                    <td colspan="6" class="text-center">
-                                        Belum ada transaksi
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    Belum ada transaksi
+                                </td>
+                            </tr>
 
                             @endforelse
 
@@ -145,6 +126,7 @@
             </div>
 
         </div>
+    </div>
 
-    @endsection
 </x-app-layout>
+

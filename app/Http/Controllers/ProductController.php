@@ -12,7 +12,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::with('user')
+            ->latest()
+            ->get();
+
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -20,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -28,7 +32,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'status' => 'required'
+        ]);
+
+        Product::create([
+            'user_id' => auth()->id(),
+            'product_name' => $request->product_name,
+            'price' => $request->price,
+            'status' => $request->status,
+        ]);
+
+        return redirect()
+            ->route('products.index')
+            ->with('success', 'Product berhasil ditambahkan');
     }
 
     /**
@@ -36,7 +55,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -44,7 +63,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -52,7 +71,21 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'product_name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'status' => 'required'
+        ]);
+
+        $product->update([
+            'product_name' => $request->product_name,
+            'price' => $request->price,
+            'status' => $request->status,
+        ]);
+
+        return redirect()
+            ->route('products.index')
+            ->with('success', 'Product berhasil diupdate');
     }
 
     /**
@@ -60,6 +93,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()
+            ->route('products.index')
+            ->with('success', 'Product berhasil dihapus');
     }
 }
+

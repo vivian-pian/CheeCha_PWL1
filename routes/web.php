@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Models\Pelanggan;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,46 +23,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
-    // --- MANAJEMEN PELANGGAN (Sudah diganti dari users) ---
-    
-    Route::get('/pelanggan', function () {
-        $pelanggan = Pelanggan::all(); 
-        return view('pelanggan.index', compact('pelanggan')); 
-    })->name('pelanggan.index');
-
-    Route::post('/pelanggan', function (Request $request) {
-        Pelanggan::create([
-            'nama_pelanggan' => $request->nama_pelanggan,
-            'email_pelanggan' => $request->email_pelanggan,
-            'nomor_telepon_pelanggan' => $request->nomor_telepon_pelanggan,
-            'alamat_pengguna' => $request->alamat_pengguna,
-        ]);
-        return redirect()->back();
-    })->name('pelanggan.store');
-
-    Route::get('/pelanggan/{id}/edit', function ($id) {
-        $pelanggan = Pelanggan::where('id_pelanggan', $id)->firstOrFail();
-        return view('pelanggan.edit', compact('pelanggan'));
-    })->name('pelanggan.edit');
-
-    Route::put('/pelanggan/{id}', function (Request $request, $id) {
-        $pelanggan = Pelanggan::where('id_pelanggan', $id)->firstOrFail();
-        $pelanggan->update([
-            'nama_pelanggan' => $request->nama_pelanggan,
-            'email_pelanggan' => $request->email_pelanggan,
-            'nomor_telepon_pelanggan' => $request->nomor_telepon_pelanggan,
-            'alamat_pengguna' => $request->alamat_pengguna,
-        ]);
-        return redirect()->route('pelanggan.index');
-    })->name('pelanggan.update');
-
-    Route::delete('/pelanggan/{id}', function ($id) {
-        $pelanggan = Pelanggan::where('id_pelanggan', $id)->firstOrFail();
-        $pelanggan->delete();
-        return redirect()->route('pelanggan.index');
-    })->name('pelanggan.destroy');
-
+    Route::resource('products', ProductController::class);
+    Route::resource('sales', SaleController::class);
+    Route::resource('user', UserController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

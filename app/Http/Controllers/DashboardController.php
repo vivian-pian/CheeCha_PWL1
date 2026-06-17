@@ -2,70 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inventory;
-use App\Models\User;
-use App\Models\Pelanggan;
-use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Sale;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $totalProducts = Inventory::count(); 
-        $totalCustomers = Pelanggan::count();
-        $totalOrders = 'tes';
+        $totalProducts = Product::count();
 
-        $products = Inventory::all();
+        $availableProducts = Product::where('status', 'available')
+                                    ->count();
 
-        return view('dashboard', compact('totalProducts', 'totalCustomers', 'totalOrders', 'products'));
-    }
+        $soldOutProducts = Product::where('status', 'sold_out')
+                                  ->count();
 
-    public function store(Request $request)
-    {
-        $validData = $request->validate([
-            'nama_barang' => 'required',
-            'price'       => 'required|numeric',
-            'stock'        => 'required|numeric', 
-            'status'      => 'required'
-        ]);
+        $totalSales = Sale::count();
 
-        Inventory::create($validData);
+        $totalRevenue = Sale::sum('total');
 
-        return redirect()->back()->with('success', 'Dessert berhasil ditambah!');
-    }
+        $latestSales = Sale::with([
+                            'product',
+                            'user'
+                        ])
+                        ->latest()
+                        ->take(5)
+                        ->get();
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama_barang' => 'required',
-            'price'       => 'required|numeric',
-            'stock'        => 'required|numeric',
-            'status'      => 'required'
-        ]);
-
-        $item = Inventory::findOrFail($id);
-
-        $item->update([
-            'nama_barang' => $request->nama_barang,
-            'price'       => $request->price,
-            'stock'        => $request->stock,
-            'status'      => $request->status,
-        ]);
-
-        return redirect()->route('dashboard')->with('success', 'Menu berhasil diupdate!');
-    }
-
-    public function destroy($id)
-    {
-        $item = Inventory::findOrFail($id);
-        $item->delete();
-
-        return redirect()->back()->with('success', 'Menu berhasil dihapus!');
-    }
-
-    public function edit($id)
-    {
-        $item = Inventory::findOrFail($id);
-        return view('edit', compact('item'));
+        return view('dashboard', compact(
+            'totalProducts',
+            'availableProducts',
+            'soldOutProducts',
+            'totalSales',
+            'totalRevenue',
+            'latestSales'
+        ));
     }
 }

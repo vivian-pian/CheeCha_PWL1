@@ -25,7 +25,7 @@
 
                     <div class="mb-4">
                         <label class="block mb-2">
-                            Harga
+                            Harga Jual
                         </label>
 
                         <input type="number" name="price" class="w-full border rounded p-2">

@@ -1,4 +1,3 @@
-```php
 <x-app-layout>
 
     <x-slot name="header">
@@ -21,7 +20,8 @@
 
                         <input type="text"
                                name="customer_name"
-                               class="w-full border rounded p-2">
+                               class="w-full border rounded p-2"
+                               required>
                     </div>
 
                     <div class="mb-4">
@@ -32,9 +32,9 @@
 
                             @foreach($products as $product)
 
-                            <option value="{{ $product->id }}">
-                                {{ $product->product_name }}
-                            </option>
+                                <option value="{{ $product->id }}">
+                                    {{ $product->product_name }}
+                                </option>
 
                             @endforeach
 
@@ -46,11 +46,28 @@
 
                         <input type="number"
                                name="quantity"
-                               class="w-full border rounded p-2">
+                               min="1"
+                               class="w-full border rounded p-2"
+                               required>
+                    </div>
+
+                    <!-- Penanggung Jawab -->
+                    <div class="mb-4">
+
+                        <label>Penanggung Jawab</label>
+
+                        <input type="text"
+                               value="{{ Auth::user()->name }}"
+                               class="w-full border rounded p-2 bg-gray-100"
+                               readonly>
+
+                        <input type="hidden"
+                               name="user_id"
+                               value="{{ Auth::id() }}">
                     </div>
 
                     <button type="submit"
-                            class="bg-green-500 text-white px-4 py-2 rounded">
+                            class="bg-[#8B6F47] hover:bg-[#70583a] text-white px-4 py-2 rounded">
                         Simpan
                     </button>
 
@@ -62,4 +79,3 @@
     </div>
 
 </x-app-layout>
-```

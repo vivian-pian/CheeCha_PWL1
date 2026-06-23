@@ -20,7 +20,10 @@
                             Nama Product
                         </label>
 
-                        <input type="text" name="product_name" class="w-full border rounded p-2">
+                        <input type="text"
+                               name="product_name"
+                               class="w-full border rounded p-2"
+                               required>
                     </div>
 
                     <div class="mb-4">
@@ -28,7 +31,10 @@
                             Harga
                         </label>
 
-                        <input type="number" name="price" class="w-full border rounded p-2">
+                        <input type="number"
+                               name="price"
+                               class="w-full border rounded p-2"
+                               required>
                     </div>
 
                     <div class="mb-4">
@@ -36,7 +42,8 @@
                             Status
                         </label>
 
-                        <select name="status" class="w-full border rounded p-2">
+                        <select name="status"
+                                class="w-full border rounded p-2">
 
                             <option value="ready">
                                 Ready
@@ -49,7 +56,23 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">
+                    <div class="mb-4">
+                        <label class="block mb-2">
+                            Penanggung Jawab
+                        </label>
+
+                        <input type="text"
+                               value="{{ Auth::user()->name }}"
+                               class="w-full border rounded p-2 bg-gray-100"
+                               readonly>
+
+                        <input type="hidden"
+                               name="user_id"
+                               value="{{ Auth::id() }}">
+                    </div>
+
+                    <button type="submit"
+                            class="bg-[#8B6F47] hover:bg-[#70583a] text-white px-4 py-2 rounded">
                         Simpan
                     </button>
 

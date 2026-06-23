@@ -11,10 +11,10 @@ class DashboardController extends Controller
     {
         $totalProducts = Product::count();
 
-        $availableProducts = Product::where('status', 'available')
+        $availableProducts = Product::where('status', 'pre-order')
                                     ->count();
 
-        $soldOutProducts = Product::where('status', 'sold_out')
+        $soldOutProducts = Product::where('status', 'ready')
                                   ->count();
 
         $totalSales = Sale::count();

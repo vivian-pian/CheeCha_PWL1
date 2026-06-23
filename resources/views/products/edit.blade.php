@@ -66,8 +66,22 @@
 
                     </div>
 
+                    <!-- Penanggung Jawab -->
+                    <div class="mb-4">
+
+                        <label class="block mb-2">
+                            Penanggung Jawab
+                        </label>
+
+                        <input type="text"
+                               value="{{ $product->user->name }}"
+                               class="w-full border rounded p-2 bg-gray-100"
+                               readonly>
+
+                    </div>
+
                     <button type="submit"
-                            class="bg-blue-500 text-white px-4 py-2 rounded">
+                            class="bg-[#8B6F47] hover:bg-[#70583a] text-white px-4 py-2 rounded">
                         Update
                     </button>
 
@@ -79,4 +93,3 @@
     </div>
 
 </x-app-layout>
-

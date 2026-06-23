@@ -12,7 +12,8 @@
             <div class="bg-white shadow rounded p-6">
 
                 <form action="{{ route('users.store') }}"
-                      method="POST">
+                      method="POST"
+                      autocomplete="off">
 
                     @csrf
 
@@ -21,6 +22,7 @@
 
                         <input type="text"
                                name="name"
+                               autocomplete="off"
                                class="w-full border rounded p-2"
                                required>
                     </div>
@@ -30,6 +32,7 @@
 
                         <input type="email"
                                name="email"
+                               autocomplete="off"
                                class="w-full border rounded p-2"
                                required>
                     </div>
@@ -39,6 +42,7 @@
 
                         <input type="password"
                                name="password"
+                               autocomplete="new-password"
                                class="w-full border rounded p-2"
                                required>
                     </div>
@@ -48,6 +52,7 @@
 
                         <input type="password"
                                name="password_confirmation"
+                               autocomplete="new-password"
                                class="w-full border rounded p-2"
                                required>
                     </div>
@@ -66,4 +71,3 @@
     </div>
 
 </x-app-layout>
-

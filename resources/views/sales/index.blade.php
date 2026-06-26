@@ -1,144 +1,170 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Data Sales
-        </h2>
-    </x-slot>
+    <div class="bg-[#F5F1EB] min-h-screen py-8">
 
-    <div class="py-6">
-        <div class="px-6">
+        <div class="max-w-7xl mx-auto px-6">
 
-            <a href="{{ route('sales.create') }}"
-               class="bg-blue-500 text-white px-4 py-2 rounded">
-                Tambah Sales
-            </a>
+            <!-- Hero -->
+            <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
-            <div class="bg-white shadow rounded p-4 mt-4">
+                <div class="flex justify-between items-center">
 
-                <table class="min-w-full border">
+                    <div>
 
-                    <thead>
-                        <tr class="bg-gray-100">
+                        <h1 class="text-4xl font-bold">
+                            Sales Management 💳
+                        </h1>
 
-                            <th class="border px-4 py-2">
-                                No
-                            </th>
+                        <p class="mt-2 opacity-90">
+                            View, manage and record all customer sales transactions.
+                        </p>
 
-                            <th class="border px-4 py-2">
-                                Customer
-                            </th>
+                    </div>
 
-                            <th class="border px-4 py-2">
-                                Product
-                            </th>
+                    <a href="{{ route('sales.create') }}"
+                        class="bg-white text-[#6B3D1E] font-semibold px-6 py-3 rounded-xl hover:bg-[#F5F1EB] transition">
 
-                            <th class="border px-4 py-2">
-                                Harga
-                            </th>
+                        + Add Sales
 
-                            <th class="border px-4 py-2">
-                                Qty
-                            </th>
+                    </a>
 
-                            <th class="border px-4 py-2">
-                                Total
-                            </th>
+                </div>
 
-                            <th class="border px-4 py-2">
-                                Penanggung Jawab
-                            </th>
+            </div>
 
-                            <th class="border px-4 py-2">
-                                Aksi
-                            </th>
+            <!-- Table -->
 
-                        </tr>
-                    </thead>
+            <div class="bg-white rounded-3xl shadow-xl border border-[#E8D6B3] overflow-hidden">
 
-                    <tbody>
+                <div class="bg-[#E8D6B3] px-6 py-5">
 
-                        @forelse($sales as $sale)
+                    <h3 class="text-2xl font-bold text-[#4A2A16]">
+                        Sales Transactions
+                    </h3>
 
-                        <tr>
+                    <p class="text-[#6B3D1E] text-sm">
+                        Complete history of customer purchases.
+                    </p>
 
-                            <td class="border px-4 py-2">
-                                {{ $loop->iteration }}
-                            </td>
+                </div>
 
-                            <td class="border px-4 py-2">
-                                {{ $sale->customer_name }}
-                            </td>
+                <div class="overflow-x-auto">
 
-                            <td class="border px-4 py-2">
-                                {{ $sale->product->product_name }}
-                            </td>
+                    <table class="min-w-full">
 
-                            <td class="border px-4 py-2">
-                                Rp {{ number_format($sale->price,0,',','.') }}
-                            </td>
+                        <thead>
 
-                            <td class="border px-4 py-2">
-                                {{ $sale->quantity }}
-                            </td>
+                            <tr class="bg-[#F5F1EB] text-[#4A2A16]">
 
-                            <td class="border px-4 py-2">
-                                Rp {{ number_format($sale->total,0,',','.') }}
-                            </td>
+                                <th class="px-6 py-4 text-left">No</th>
+                                <th class="px-6 py-4 text-left">Customer</th>
+                                <th class="px-6 py-4 text-left">Product</th>
+                                <th class="px-6 py-4 text-left">Price</th>
+                                <th class="px-6 py-4 text-center">Qty</th>
+                                <th class="px-6 py-4 text-left">Total</th>
+                                <th class="px-6 py-4 text-left">Cashier</th>
+                                <th class="px-6 py-4 text-center">Action</th>
 
-                            <td class="border px-4 py-2">
-                                {{ $sale->user->name }}
-                            </td>
+                            </tr>
 
-                            <td class="border px-4 py-2">
+                        </thead>
 
-                                <a href="{{ route('sales.edit',$sale->id) }}"
-                                   class="bg-yellow-500 text-white px-3 py-1 rounded">
-                                    Edit
-                                </a>
+                        <tbody>
 
-                                <form action="{{ route('sales.destroy',$sale->id) }}"
-                                      method="POST"
-                                      style="display:inline">
+                            @forelse($sales as $sale)
 
-                                    @csrf
-                                    @method('DELETE')
+                                <tr class="border-b hover:bg-[#FFF8EF] transition">
 
-                                    <button type="submit"
-                                            class="bg-red-500 text-white px-3 py-1 rounded"
-                                            onclick="return confirm('Yakin hapus data?')">
-                                        Hapus
-                                    </button>
+                                    <td class="px-6 py-4">
+                                        {{ $loop->iteration }}
+                                    </td>
 
-                                </form>
+                                    <td class="px-6 py-4 font-medium">
+                                        {{ $sale->customer_name }}
+                                    </td>
 
-                            </td>
+                                    <td class="px-6 py-4">
+                                        {{ $sale->product->product_name }}
+                                    </td>
 
-                        </tr>
+                                    <td class="px-6 py-4">
+                                        Rp {{ number_format($sale->price, 0, ',', '.') }}
+                                    </td>
 
-                        @empty
+                                    <td class="px-6 py-4 text-center">
+                                        {{ $sale->quantity }}
+                                    </td>
 
-                        <tr>
+                                    <td class="px-6 py-4 font-bold text-[#6B3D1E]">
+                                        Rp {{ number_format($sale->total, 0, ',', '.') }}
+                                    </td>
 
-                            <td colspan="8"
-                                class="text-center py-4">
+                                    <td class="px-6 py-4">
+                                        {{ $sale->user->name }}
+                                    </td>
 
-                                Belum ada data sales
+                                    <td class="px-6 py-4">
 
-                            </td>
+                                        <div class="flex justify-center gap-2">
 
-                        </tr>
+                                            <a href="{{ route('sales.edit', $sale->id) }}"
+                                                class="bg-[#E8D6B3] hover:bg-[#D9C7A6] text-[#4A2A16] font-semibold px-4 py-2 rounded-xl transition">
 
-                        @endforelse
+                                                ✏ Edit
 
-                    </tbody>
+                                            </a>
 
-                </table>
+                                            <form action="{{ route('sales.destroy', $sale->id) }}" method="POST">
+
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit"
+                                                    onclick="return confirm('Yakin ingin menghapus data ini?')"
+                                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition">
+
+                                                    🗑 Delete
+
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            @empty
+
+                                <tr>
+
+                                    <td colspan="8" class="text-center py-16">
+
+                                        <div class="text-6xl mb-4">
+                                            🧾
+                                        </div>
+
+                                        <h2 class="text-xl text-gray-500 font-semibold">
+                                            No sales data available.
+                                        </h2>
+
+                                    </td>
+
+                                </tr>
+
+                            @endforelse
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
         </div>
+
     </div>
 
 </x-app-layout>
-

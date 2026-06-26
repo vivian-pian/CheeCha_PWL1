@@ -1,73 +1,104 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Tambah User
-        </h2>
-    </x-slot>
+    <div class="bg-[#F5F1EB] min-h-screen py-8">
 
-    <div class="py-6">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto px-6">
 
-            <div class="bg-white shadow rounded p-6">
+            <!-- Hero -->
+            <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
-                <form action="{{ route('users.store') }}"
-                      method="POST"
-                      autocomplete="off">
+                <h1 class="text-4xl font-bold">
+                    Add User 👤
+                </h1>
+
+                <p class="mt-2 opacity-90">
+                    Fill in the information below to create a new administrator account.
+                </p>
+
+            </div>
+
+            <!-- Form -->
+            <div class="bg-white rounded-3xl shadow-xl border border-[#E8D6B3] p-8">
+
+                <form action="{{ route('users.store') }}" method="POST" autocomplete="off">
 
                     @csrf
 
-                    <div class="mb-4">
-                        <label>Nama</label>
+                    <!-- Name -->
+                    <div class="mb-6">
 
-                        <input type="text"
-                               name="name"
-                               autocomplete="off"
-                               class="w-full border rounded p-2"
-                               required>
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            Full Name
+                        </label>
+
+                        <input type="text" name="name" autocomplete="off" required placeholder="Enter full name"
+                            class="w-full rounded-xl border border-[#D9C7A6] px-4 py-3 focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47]">
+
                     </div>
 
-                    <div class="mb-4">
-                        <label>Email</label>
+                    <!-- Email -->
+                    <div class="mb-6">
 
-                        <input type="email"
-                               name="email"
-                               autocomplete="off"
-                               class="w-full border rounded p-2"
-                               required>
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            Email Address
+                        </label>
+
+                        <input type="email" name="email" autocomplete="off" required placeholder="example@email.com"
+                            class="w-full rounded-xl border border-[#D9C7A6] px-4 py-3 focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47]">
+
                     </div>
 
-                    <div class="mb-4">
-                        <label>Password</label>
+                    <!-- Password -->
+                    <div class="mb-6">
 
-                        <input type="password"
-                               name="password"
-                               autocomplete="new-password"
-                               class="w-full border rounded p-2"
-                               required>
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            Password
+                        </label>
+
+                        <input type="password" name="password" autocomplete="new-password" required
+                            placeholder="Enter password"
+                            class="w-full rounded-xl border border-[#D9C7A6] px-4 py-3 focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47]">
+
                     </div>
 
-                    <div class="mb-4">
-                        <label>Konfirmasi Password</label>
+                    <!-- Confirm Password -->
+                    <div class="mb-8">
 
-                        <input type="password"
-                               name="password_confirmation"
-                               autocomplete="new-password"
-                               class="w-full border rounded p-2"
-                               required>
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            Confirm Password
+                        </label>
+
+                        <input type="password" name="password_confirmation" autocomplete="new-password" required
+                            placeholder="Re-enter password"
+                            class="w-full rounded-xl border border-[#D9C7A6] px-4 py-3 focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47]">
+
                     </div>
 
-                    <button type="submit"
-                            class="text-white px-4 py-2 rounded"
-                            style="background-color:#97A97C;">
-                        Simpan
-                    </button>
+                    <!-- Button -->
+                    <div class="flex justify-end gap-3">
+
+                        <a href="{{ route('users.index') }}"
+                            class="px-6 py-3 rounded-xl border border-[#8B6F47] text-[#8B6F47] hover:bg-[#F5F1EB] transition">
+
+                            Cancel
+
+                        </a>
+
+                        <button type="submit"
+                            class="bg-[#6B3D1E] hover:bg-[#4A2A16] text-white px-6 py-3 rounded-xl shadow-md transition">
+
+                            ➕ Save User
+
+                        </button>
+
+                    </div>
 
                 </form>
 
             </div>
 
         </div>
+
     </div>
 
 </x-app-layout>

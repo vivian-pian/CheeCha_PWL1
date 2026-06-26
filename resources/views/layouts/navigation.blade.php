@@ -1,67 +1,97 @@
 <nav x-data="{ open: false }"
-     style="background-color:#EFE7DA;"
-     class="border-b border-stone-300">
+    class="bg-[#FFFDF8] border-b border-[#E8D6B3] shadow-md">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-20">
 
-            <!-- BAGIAN KIRI -->
-            <div class="flex">
+            <!-- Logo -->
+            <div class="flex items-center">
 
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                </div>
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
 
-                <!-- Menu -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <img src="{{ asset('aset/Logo baru lavenir.jpeg') }}"
+                        alt="L'Avenir Logo"
+                        class="h-14 w-14 rounded-full object-cover shadow-md">
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        Dashboard
-                    </x-nav-link>
+                    <div>
 
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
-                        Product
-                    </x-nav-link>
+                        <h1 class="text-xl font-bold text-[#4A2A16]">
+                            L'AVENIR
+                        </h1>
 
-                    <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')">
-                        Sales
-                    </x-nav-link>
+                        <p class="text-xs text-[#8B6B52] uppercase tracking-widest">
+                            Boulangerie
+                        </p>
 
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                        Users
-                    </x-nav-link>
+                    </div>
 
-                </div>
+                </a>
 
             </div>
 
-            <!-- BAGIAN KANAN -->
-            <div class="hidden sm:flex sm:items-center sm:ml-auto">
+            <!-- Menu -->
+            <div class="hidden sm:flex items-center gap-4">
 
-                <x-dropdown align="right" width="48">
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    🏠 Dashboard
+                </x-nav-link>
+
+                <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                    🍰 Products
+                </x-nav-link>
+
+                <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')">
+                    💳 Sales
+                </x-nav-link>
+
+                <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                    👤 Users
+                </x-nav-link>
+
+            </div>
+
+            <!-- User -->
+            <div class="hidden sm:flex sm:items-center">
+
+                <x-dropdown align="right" width="56">
 
                     <x-slot name="trigger">
 
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl border border-[#E8D6B3] bg-white hover:bg-[#F5F1EB] transition">
 
-                            <div>{{ Auth::user()->name }}</div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-[#6B3D1E] text-white flex items-center justify-center font-bold">
 
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20">
+                                {{ strtoupper(substr(Auth::user()->name,0,1)) }}
 
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-
-                                </svg>
                             </div>
+
+                            <div class="text-left">
+
+                                <div class="font-semibold text-[#4A2A16]">
+                                    {{ Auth::user()->name }}
+                                </div>
+
+                                <div class="text-xs text-gray-500">
+                                    Administrator
+                                </div>
+
+                            </div>
+
+                            <svg class="w-4 h-4 text-[#4A2A16]"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24">
+
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+
+                            </svg>
 
                         </button>
 
@@ -70,15 +100,18 @@
                     <x-slot name="content">
 
                         <x-dropdown-link :href="route('profile.edit')">
-                            Profile
+                            👤 Profile
                         </x-dropdown-link>
 
                         <form method="POST" action="{{ route('logout') }}">
+
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                Log Out
+
+                                🚪 Logout
+
                             </x-dropdown-link>
 
                         </form>
@@ -89,22 +122,28 @@
 
             </div>
 
-            <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
+            <!-- Mobile Menu -->
+            <div class="flex items-center sm:hidden">
 
-                <button @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
+                <button
+                    @click="open = ! open"
+                    class="p-2 rounded-lg hover:bg-[#E8D6B3] transition">
 
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <svg class="h-6 w-6"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 24 24">
 
-                        <path :class="{'hidden': open, 'inline-flex': ! open }"
+                        <path
+                            :class="{ 'hidden': open, 'inline-flex': !open }"
                             class="inline-flex"
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
 
-                        <path :class="{'hidden': ! open, 'inline-flex': open }"
+                        <path
+                            :class="{ 'hidden': !open, 'inline-flex': open }"
                             class="hidden"
                             stroke-linecap="round"
                             stroke-linejoin="round"
@@ -120,5 +159,5 @@
         </div>
 
     </div>
-</nav>
 
+</nav>

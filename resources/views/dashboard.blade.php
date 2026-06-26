@@ -1,119 +1,201 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl leading-tight" style="color: #97a97c;">
-            {{ __('Cheeccha Dessert Management') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-6">
+    <div class="py-8 bg-[#F5F1EB] min-h-screen">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <h2 class="text-2xl font-bold mb-4">
-                Dashboard Admin
-            </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <!-- Statistic Cards -->
 
-                <div class="bg-white shadow rounded p-4">
-                    <h6>Total Produk</h6>
-                    <h2 class="text-3xl font-bold">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div
+                    class="bg-white rounded-3xl shadow-lg p-6 border border-[#E8D6B3] hover:shadow-xl transition duration-300">
+
+                    <div class="text-4xl mb-3">
+                        📦
+                    </div>
+
+                    <h6 class="text-gray-500">
+                        Total Products
+                    </h6>
+
+                    <h2 class="text-4xl font-bold text-[#4A2A16] mt-2">
                         {{ $totalProducts }}
                     </h2>
+
                 </div>
 
-                <div class="bg-white shadow rounded p-4">
-                    <h6>Produk Available</h6>
-                    <h2 class="text-3xl font-bold">
+                <div
+                    class="bg-white rounded-3xl shadow-lg p-6 border border-[#E8D6B3] hover:shadow-xl transition duration-300">
+
+                    <div class="text-4xl mb-3">
+                        🛒
+                    </div>
+
+                    <h6 class="text-gray-500">
+                        Pre-Order Products
+                    </h6>
+
+                    <h2 class="text-4xl font-bold text-[#4A2A16] mt-2">
+                        {{ $POProducts }}
+                    </h2>
+
+                </div>
+
+                <div
+                    class="bg-white rounded-3xl shadow-lg p-6 border border-[#E8D6B3] hover:shadow-xl transition duration-300">
+
+                    <div class="text-4xl mb-3">
+                        🍰
+                    </div>
+
+                    <h6 class="text-gray-500">
+                        Ready Products
+                    </h6>
+
+                    <h2 class="text-4xl font-bold text-[#4A2A16] mt-2">
                         {{ $availableProducts }}
                     </h2>
+
                 </div>
 
-                <div class="bg-white shadow rounded p-4">
-                    <h6>Produk Sold Out</h6>
-                    <h2 class="text-3xl font-bold">
-                        {{ $soldOutProducts }}
-                    </h2>
-                </div>
+                <div
+                    class="bg-white rounded-3xl shadow-lg p-6 border border-[#E8D6B3] hover:shadow-xl transition duration-300">
 
-                <div class="bg-white shadow rounded p-4">
-                    <h6>Total Sales</h6>
-                    <h2 class="text-3xl font-bold">
+                    <div class="text-4xl mb-3">
+                        💳
+                    </div>
+
+                    <h6 class="text-gray-500">
+                        Total Sales
+                    </h6>
+
+                    <h2 class="text-4xl font-bold text-[#4A2A16] mt-2">
                         {{ $totalSales }}
                     </h2>
+
                 </div>
 
             </div>
 
-            <div class="bg-white shadow rounded p-6 mt-6">
-                <h5 class="text-lg font-semibold">
-                    Total Revenue
-                </h5>
+            <!-- Revenue -->
 
-                <h1 class="text-4xl font-bold mt-2">
+            <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 mt-8 text-white">
+
+                <p class="uppercase tracking-widest text-sm opacity-80">
+                    Pendapatan
+                </p>
+
+                <h2 class="text-5xl font-bold mt-3">
                     Rp {{ number_format($totalRevenue, 0, ',', '.') }}
-                </h1>
+                </h2>
+
+                <p class="mt-3 opacity-80">
+                    Total pendapatan dari seluruh transaksi.
+                </p>
+
             </div>
 
-            <div class="bg-white shadow rounded mt-6">
+            <!-- Latest Transactions -->
 
-                <div class="p-4 border-b">
-                    <h5 class="font-semibold">
-                        Transaksi Terbaru
-                    </h5>
+            <div class="bg-white rounded-3xl shadow-xl mt-8 overflow-hidden">
+
+                <div class="bg-[#E8D6B3] px-6 py-5">
+
+                    <h3 class="text-2xl font-bold text-[#4A2A16]">
+                        Transaksi Terakhir
+                    </h3>
+
+                    <p class="text-[#6B3D1E] text-sm">
+                        History Transaksi Penjualan Terakhir.
+                    </p>
+
                 </div>
 
-                <div class="p-4 overflow-x-auto">
+                <div class="overflow-x-auto">
 
-                    <table class="min-w-full border">
+                    <table class="min-w-full">
 
                         <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border px-4 py-2">No</th>
-                                <th class="border px-4 py-2">Customer</th>
-                                <th class="border px-4 py-2">Product</th>
-                                <th class="border px-4 py-2">Qty</th>
-                                <th class="border px-4 py-2">Total</th>
-                                <th class="border px-4 py-2">Cashier</th>
+
+                            <tr class="bg-[#F5F1EB] text-[#4A2A16]">
+
+                                <th class="px-6 py-4 text-left font-semibold">
+                                    No
+                                </th>
+
+                                <th class="px-6 py-4 text-left font-semibold">
+                                    Nama Customer
+                                </th>
+
+                                <th class="px-6 py-4 text-left font-semibold">
+                                    Nama Produk
+                                </th>
+
+                                <th class="px-6 py-4 text-center font-semibold">
+                                    Quantity
+                                </th>
+
+                                <th class="px-6 py-4 text-left font-semibold">
+                                    Total
+                                </th>
+
+                                <th class="px-6 py-4 text-left font-semibold">
+                                    Cashier
+                                </th>
+
                             </tr>
+
                         </thead>
 
                         <tbody>
 
                             @forelse($latestSales as $sale)
 
-                            <tr>
-                                <td class="border px-4 py-2">
-                                    {{ $loop->iteration }}
-                                </td>
+                                <tr class="border-b hover:bg-[#FFF8EF] transition">
 
-                                <td class="border px-4 py-2">
-                                    {{ $sale->customer_name }}
-                                </td>
+                                    <td class="px-6 py-4">
+                                        {{ $loop->iteration }}
+                                    </td>
 
-                                <td class="border px-4 py-2">
-                                    {{ $sale->product->product_name }}
-                                </td>
+                                    <td class="px-6 py-4 font-medium">
+                                        {{ $sale->customer_name }}
+                                    </td>
 
-                                <td class="border px-4 py-2">
-                                    {{ $sale->quantity }}
-                                </td>
+                                    <td class="px-6 py-4">
+                                        {{ $sale->product->product_name }}
+                                    </td>
 
-                                <td class="border px-4 py-2">
-                                    Rp {{ number_format($sale->total,0,',','.') }}
-                                </td>
+                                    <td class="px-6 py-4 text-center">
+                                        {{ $sale->quantity }}
+                                    </td>
 
-                                <td class="border px-4 py-2">
-                                    {{ $sale->user->name }}
-                                </td>
-                            </tr>
+                                    <td class="px-6 py-4 font-semibold text-[#6B3D1E]">
+                                        Rp {{ number_format($sale->total, 0, ',', '.') }}
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        {{ $sale->user->name }}
+                                    </td>
+
+                                </tr>
 
                             @empty
 
-                            <tr>
-                                <td colspan="6" class="text-center py-4">
-                                    Belum ada transaksi
-                                </td>
-                            </tr>
+                                <tr>
+
+                                    <td colspan="6" class="text-center py-12 text-gray-500">
+
+                                        <div class="text-5xl mb-3">
+                                            🍰
+                                        </div>
+
+                                        Belum ada transaksi.
+
+                                    </td>
+
+                                </tr>
 
                             @endforelse
 
@@ -126,7 +208,7 @@
             </div>
 
         </div>
+
     </div>
 
 </x-app-layout>
-

@@ -1,65 +1,107 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Edit User
-        </h2>
-    </x-slot>
+    <div class="bg-[#F5F1EB] min-h-screen py-8">
 
-    <div class="py-6">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto px-6">
 
-            <div class="bg-white shadow rounded p-6">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
-                <form action="{{ route('users.update', $user->id) }}"
-                      method="POST">
+                <h1 class="text-4xl font-bold">
+                    Edit User 👤
+                </h1>
+
+                <p class="mt-2 opacity-90">
+                    Update the user's information below.
+                </p>
+
+            </div>
+
+            <!-- Form Card -->
+            <div class="bg-white rounded-3xl shadow-xl border border-[#E8D6B3] p-8">
+
+                <form action="{{ route('users.update', $user->id) }}" method="POST">
 
                     @csrf
                     @method('PUT')
 
-                    <div class="mb-4">
-                        <label>Nama</label>
+                    <!-- Name -->
+                    <div class="mb-6">
 
-                        <input type="text"
-                               name="name"
-                               value="{{ $user->name }}"
-                               class="w-full border rounded p-2"
-                               required>
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ $user->name }}"
+                            required
+                            class="w-full rounded-xl border border-[#D9C7A6] focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47] px-4 py-3">
+
                     </div>
 
-                    <div class="mb-4">
-                        <label>Email</label>
+                    <!-- Email -->
+                    <div class="mb-6">
 
-                        <input type="email"
-                               name="email"
-                               value="{{ $user->email }}"
-                               class="w-full border rounded p-2"
-                               required>
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ $user->email }}"
+                            required
+                            class="w-full rounded-xl border border-[#D9C7A6] focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47] px-4 py-3">
+
                     </div>
 
-                    <div class="mb-4">
-                        <label>Password Baru</label>
+                    <!-- Password -->
+                    <div class="mb-8">
 
-                        <input type="password"
-                               name="password"
-                               class="w-full border rounded p-2">
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            New Password
+                        </label>
 
-                        <small class="text-gray-500">
-                            Kosongkan jika tidak ingin mengubah password
-                        </small>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Leave blank if you don't want to change it"
+                            class="w-full rounded-xl border border-[#D9C7A6] focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47] px-4 py-3">
+
+                        <p class="text-sm text-gray-500 mt-2">
+                            Leave this field empty if you don't want to change the current password.
+                        </p>
+
                     </div>
 
-                    <button type="submit"
-                            class="text-white px-4 py-2 rounded"
-                            style="background-color:#8B6F47;">
-                        Update
-                    </button>
+                    <!-- Buttons -->
+                    <div class="flex justify-end gap-3">
+
+                        <a href="{{ route('users.index') }}"
+                            class="px-6 py-3 rounded-xl border border-[#8B6F47] text-[#8B6F47] hover:bg-[#F5F1EB] transition">
+
+                            Cancel
+
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="bg-[#6B3D1E] hover:bg-[#4A2A16] text-white px-6 py-3 rounded-xl shadow-md transition">
+
+                            💾 Update User
+
+                        </button>
+
+                    </div>
 
                 </form>
 
             </div>
 
         </div>
+
     </div>
 
 </x-app-layout>

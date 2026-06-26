@@ -1,119 +1,157 @@
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Data Users
-        </h2>
-    </x-slot>
 
-    <div class="py-6">
-        <div class="px-6">
-    <div class="flex justify-end mb-4">
-            <a href="{{ route('users.create') }}"
-               class="bg-blue-500 text-white px-4 py-2 rounded">
-                Tambah User
-            </a>
-    </div>
-            <div class="bg-white shadow rounded p-4 mt-4">
+    <div class="bg-[#F5F1EB] min-h-screen py-8">
 
-                <table class="min-w-full border">
+        <div class="max-w-7xl mx-auto px-6">
 
-                    <thead>
-                        <tr class="bg-gray-100">
+            <!-- Header Card -->
+            <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
-                            <th class="border px-4 py-2">
-                                No
-                            </th>
+                <div class="flex justify-between items-center">
 
-                            <th class="border px-4 py-2">
-                                Nama
-                            </th>
+                    <div>
 
-                            <th class="border px-4 py-2">
-                                Email
-                            </th>
+                        <h1 class="text-4xl font-bold">
+                            User Management
+                        </h1>
 
-                            <th class="border px-4 py-2">
-                                Dibuat Pada
-                            </th>
+                        <p class="mt-2 opacity-90">
+                            Manage administrator accounts for L'Avenir Boulangerie.
+                        </p>
 
-                            <th class="border px-4 py-2">
-                                Aksi
-                            </th>
+                    </div>
 
-                        </tr>
-                    </thead>
+                    <a href="{{ route('users.create') }}"
+                        class="bg-white text-[#6B3D1E] font-semibold px-6 py-3 rounded-xl hover:bg-[#F5F1EB] transition">
 
-                    <tbody>
+                        + Add User
 
-                        @forelse($users as $user)
+                    </a>
 
-                        <tr>
+                </div>
 
-                            <td class="border px-4 py-2">
-                                {{ $loop->iteration }}
-                            </td>
+            </div>
 
-                            <td class="border px-4 py-2">
-                                {{ $user->name }}
-                            </td>
+            <!-- Table Card -->
 
-                            <td class="border px-4 py-2">
-                                {{ $user->email }}
-                            </td>
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-[#E8D6B3]">
 
-                            <td class="border px-4 py-2">
-                                {{ $user->created_at->format('d M Y') }}
-                            </td>
+                <div class="bg-[#E8D6B3] px-6 py-5">
 
-                            <td class="border px-4 py-2">
+                    <h3 class="text-2xl font-bold text-[#4A2A16]">
+                        Registered Users
+                    </h3>
 
-                                <a href="{{ route('users.edit', $user->id) }}"
-                                   class="bg-yellow-500 text-white px-3 py-1 rounded">
-                                    Edit
-                                </a>
+                    <p class="text-[#6B3D1E] text-sm">
+                        List of administrator accounts.
+                    </p>
 
-                                <form action="{{ route('users.destroy', $user->id) }}"
-                                      method="POST"
-                                      style="display:inline">
+                </div>
 
-                                    @csrf
-                                    @method('DELETE')
+                <div class="overflow-x-auto">
 
-                                    <button type="submit"
-                                            class="bg-red-500 text-white px-3 py-1 rounded"
-                                            onclick="return confirm('Yakin hapus user?')">
-                                        Hapus
-                                    </button>
+                    <table class="min-w-full">
 
-                                </form>
+                        <thead>
 
-                            </td>
+                            <tr class="bg-[#F5F1EB] text-[#4A2A16]">
 
-                        </tr>
+                                <th class="px-6 py-4 text-left">No</th>
+                                <th class="px-6 py-4 text-left">Name</th>
+                                <th class="px-6 py-4 text-left">Email</th>
+                                <th class="px-6 py-4 text-left">Created At</th>
+                                <th class="px-6 py-4 text-center">Action</th>
 
-                        @empty
+                            </tr>
 
-                        <tr>
+                        </thead>
 
-                            <td colspan="5"
-                                class="text-center py-4">
+                        <tbody>
 
-                                Belum ada data user
+                            @forelse($users as $user)
 
-                            </td>
+                                <tr class="border-b hover:bg-[#FFF8EF] transition">
 
-                        </tr>
+                                    <td class="px-6 py-4">
+                                        {{ $loop->iteration }}
+                                    </td>
 
-                        @endforelse
+                                    <td class="px-6 py-4 font-medium">
+                                        {{ $user->name }}
+                                    </td>
 
-                    </tbody>
+                                    <td class="px-6 py-4 text-gray-600">
+                                        {{ $user->email }}
+                                    </td>
 
-                </table>
+                                    <td class="px-6 py-4">
+                                        {{ $user->created_at->format('d M Y') }}
+                                    </td>
+
+                                    <td class="px-6 py-4">
+
+                                        <div class="flex justify-center gap-2">
+
+                                            <a href="{{ route('users.edit', $user->id) }}"
+                                                class="bg-[#E8D6B3] hover:bg-[#D8C19B] text-[#4A2A16] font-semibold px-4 py-2 rounded-xl transition">
+
+                                                ✏ Edit
+
+                                            </a>
+
+                                            <form action="{{ route('users.destroy', $user->id) }}"
+                                                method="POST">
+
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    onclick="return confirm('Yakin ingin menghapus user ini?')"
+                                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition">
+
+                                                    🗑 Delete
+
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            @empty
+
+                                <tr>
+
+                                    <td colspan="5" class="text-center py-16">
+
+                                        <div class="text-6xl mb-4">
+                                            👤
+                                        </div>
+
+                                        <h2 class="text-xl font-semibold text-gray-500">
+                                            No users found
+                                        </h2>
+
+                                    </td>
+
+                                </tr>
+
+                            @endforelse
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
         </div>
+
     </div>
 
 </x-app-layout>

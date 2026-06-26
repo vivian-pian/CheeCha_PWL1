@@ -93,6 +93,7 @@ class SaleController extends Controller
         $product = Product::findOrFail($request->product_id);
 
         $sale->update([
+            'user_id'=> auth()->id(),
             'product_id' => $product->id,
             'customer_name' => $request->customer_name,
             'price' => $product->price,

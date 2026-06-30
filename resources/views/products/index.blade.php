@@ -4,7 +4,6 @@
 
         <div class="max-w-7xl mx-auto px-6">
 
-            <!-- Hero -->
             <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
                 <div class="flex justify-between items-center">
@@ -12,7 +11,7 @@
                     <div>
 
                         <h1 class="text-4xl font-bold">
-                            Product Management 🍰
+                            Product Management
                         </h1>
 
                         <p class="mt-2 opacity-90">
@@ -32,8 +31,6 @@
 
             </div>
 
-            <!-- Table -->
-
             <div class="bg-white rounded-3xl shadow-xl border border-[#E8D6B3] overflow-hidden">
 
                 <div class="bg-[#E8D6B3] px-6 py-5">
@@ -43,7 +40,7 @@
                     </h3>
 
                     <p class="text-[#6B3D1E] text-sm">
-                        Complete list of available products.
+                        List of available and pre-order products.
                     </p>
 
                 </div>
@@ -82,7 +79,7 @@
                                     </td>
 
                                     <td class="px-6 py-4">
-                                        Rp {{ number_format($product->price, 0, ',', '.') }}
+                                        {{$product->price}}
                                     </td>
 
                                     <td class="px-6 py-4 text-center">
@@ -90,13 +87,13 @@
                                         @if($product->status == 'ready')
 
                                             <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                                                ✅ Ready
+                                                Ready
                                             </span>
 
                                         @else
 
                                             <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
-                                                ⏳ Pre Order
+                                                Pre Order
                                             </span>
 
                                         @endif
@@ -114,7 +111,7 @@
                                             <a href="{{ route('products.edit', $product->id) }}"
                                                 class="bg-[#E8D6B3] hover:bg-[#D9C7A6] text-[#4A2A16] font-semibold px-4 py-2 rounded-xl transition">
 
-                                                ✏ Edit
+                                                Edit
 
                                             </a>
 
@@ -127,7 +124,7 @@
                                                     onclick="return confirm('Yakin ingin menghapus produk ini?')"
                                                     class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition">
 
-                                                    🗑 Delete
+                                                    Delete
 
                                                 </button>
 
@@ -144,10 +141,6 @@
                                 <tr>
 
                                     <td colspan="6" class="text-center py-16">
-
-                                        <div class="text-6xl mb-4">
-                                            🍰
-                                        </div>
 
                                         <h2 class="text-xl font-semibold text-gray-500">
                                             No products available.

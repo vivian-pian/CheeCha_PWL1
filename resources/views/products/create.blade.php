@@ -4,27 +4,24 @@
 
         <div class="max-w-3xl mx-auto px-6">
 
-            <!-- Hero -->
             <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
                 <h1 class="text-4xl font-bold">
-                    Add Product 🍰
+                    Add Product 
                 </h1>
 
                 <p class="mt-2 opacity-90">
-                    Add a new cheesecake product to your menu.
+                    Add a new product to your menu.
                 </p>
 
             </div>
 
-            <!-- Form -->
             <div class="bg-white rounded-3xl shadow-xl border border-[#E8D6B3] p-8">
 
                 <form action="{{ route('products.store') }}" method="POST">
 
                     @csrf
 
-                    <!-- Product Name -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -36,7 +33,6 @@
 
                     </div>
 
-                    <!-- Price -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -48,7 +44,6 @@
 
                     </div>
 
-                    <!-- Status -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -59,18 +54,17 @@
                             class="w-full rounded-xl border border-[#D9C7A6] px-4 py-3 focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47]">
 
                             <option value="ready">
-                                ✅ Ready
+                                Ready
                             </option>
 
                             <option value="pre-order">
-                                ⏳ Pre Order
+                                Pre Order
                             </option>
 
                         </select>
 
                     </div>
 
-                    <!-- Person In Charge -->
                     <div class="mb-8">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -84,7 +78,6 @@
 
                     </div>
 
-                    <!-- Buttons -->
                     <div class="flex justify-end gap-3">
 
                         <a href="{{ route('products.index') }}"
@@ -97,7 +90,7 @@
                         <button type="submit"
                             class="bg-[#6B3D1E] hover:bg-[#4A2A16] text-white px-6 py-3 rounded-xl shadow-md transition">
 
-                            ➕ Save Product
+                            Save Product
 
                         </button>
 

@@ -4,11 +4,10 @@
 
         <div class="max-w-3xl mx-auto px-6">
 
-            <!-- Header -->
             <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
                 <h1 class="text-4xl font-bold">
-                    Edit User 👤
+                    Edit User
                 </h1>
 
                 <p class="mt-2 opacity-90">
@@ -17,7 +16,6 @@
 
             </div>
 
-            <!-- Form Card -->
             <div class="bg-white rounded-3xl shadow-xl border border-[#E8D6B3] p-8">
 
                 <form action="{{ route('users.update', $user->id) }}" method="POST">
@@ -25,49 +23,56 @@
                     @csrf
                     @method('PUT')
 
-                    <!-- Name -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
                             Full Name
                         </label>
 
-                        <input
-                            type="text"
-                            name="name"
-                            value="{{ $user->name }}"
-                            required
+                        <input type="text" name="name" value="{{ $user->name }}" required
                             class="w-full rounded-xl border border-[#D9C7A6] focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47] px-4 py-3">
 
                     </div>
 
-                    <!-- Email -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
                             Email Address
                         </label>
 
-                        <input
-                            type="email"
-                            name="email"
-                            value="{{ $user->email }}"
-                            required
+                        <input type="email" name="email" value="{{ $user->email }}" required
                             class="w-full rounded-xl border border-[#D9C7A6] focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47] px-4 py-3">
 
                     </div>
 
-                    <!-- Password -->
+                    <div class="mb-6">
+
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            Role
+                        </label>
+
+                        <select name="role"
+                            class="w-full rounded-xl border border-[#D9C7A6] px-4 py-3 focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47]">
+
+                            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>
+                                Admin
+                            </option>
+
+                            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>
+                                User
+                            </option>
+
+                        </select>
+
+                    </div>
+
                     <div class="mb-8">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
                             New Password
                         </label>
 
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Leave blank if you don't want to change it"
+                        <input type="password" name="password" placeholder="Leave blank if you don't want to change it"
                             class="w-full rounded-xl border border-[#D9C7A6] focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47] px-4 py-3">
 
                         <p class="text-sm text-gray-500 mt-2">
@@ -76,7 +81,6 @@
 
                     </div>
 
-                    <!-- Buttons -->
                     <div class="flex justify-end gap-3">
 
                         <a href="{{ route('users.index') }}"
@@ -86,11 +90,10 @@
 
                         </a>
 
-                        <button
-                            type="submit"
+                        <button type="submit"
                             class="bg-[#6B3D1E] hover:bg-[#4A2A16] text-white px-6 py-3 rounded-xl shadow-md transition">
 
-                            💾 Update User
+                            Update User
 
                         </button>
 

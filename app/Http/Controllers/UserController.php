@@ -26,12 +26,14 @@ class UserController extends Controller
             'name'     => 'required',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6',
+            'role'     => 'required|in:admin,user',
         ]);
 
         User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
+            'role'     => $request->role,
         ]);
 
         return redirect()
@@ -49,14 +51,16 @@ class UserController extends Controller
         $request->validate([
             'name'  => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
+            'role'  => 'required|in:admin,user',
         ]);
 
         $data = [
             'name'  => $request->name,
             'email' => $request->email,
+            'role'  => $request->role,
         ];
 
-        if ($request->password) {
+        if (!empty($request->password)) {
             $data['password'] = Hash::make($request->password);
         }
 

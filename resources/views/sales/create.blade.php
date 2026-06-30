@@ -4,27 +4,24 @@
 
         <div class="max-w-3xl mx-auto px-6">
 
-            <!-- Hero -->
             <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
                 <h1 class="text-4xl font-bold">
-                    Add Sales 💳
+                    Add Sales 
                 </h1>
 
                 <p class="mt-2 opacity-90">
-                    Fill in the customer transaction details below.
+                    Fill in the sale transaction details below.
                 </p>
 
             </div>
 
-            <!-- Form -->
             <div class="bg-white rounded-3xl shadow-xl border border-[#E8D6B3] p-8">
 
                 <form action="{{ route('sales.store') }}" method="POST">
 
                     @csrf
 
-                    <!-- Customer -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -36,7 +33,6 @@
 
                     </div>
 
-                    <!-- Product -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -58,7 +54,6 @@
 
                     </div>
 
-                    <!-- Quantity -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -70,7 +65,6 @@
 
                     </div>
 
-                    <!-- Cashier -->
                     <div class="mb-8">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -84,7 +78,6 @@
 
                     </div>
 
-                    <!-- Buttons -->
                     <div class="flex justify-end gap-3">
 
                         <a href="{{ route('sales.index') }}"
@@ -97,7 +90,7 @@
                         <button type="submit"
                             class="bg-[#6B3D1E] hover:bg-[#4A2A16] text-white px-6 py-3 rounded-xl shadow-md transition">
 
-                            ➕ Save Sales
+                            Save Sales
 
                         </button>
 

@@ -19,7 +19,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/dashboard/{id}', [DashboardController::class, 'update'])->name('inventory.update');
     Route::delete('/dashboard/{id}', [DashboardController::class, 'destroy'])->name('inventory.destroy');
     Route::get('/dashboard/{id}/edit', [DashboardController::class, 'edit'])->name('inventory.edit');
+});
 
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

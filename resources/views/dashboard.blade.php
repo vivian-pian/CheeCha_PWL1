@@ -1,20 +1,23 @@
 <x-app-layout>
 
+    @if(session('error'))
+
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+
+            {{ session('error') }}
+
+        </div>
+
+    @endif
+
     <div class="py-8 bg-[#F5F1EB] min-h-screen">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-
-            <!-- Statistic Cards -->
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <div
                     class="bg-white rounded-3xl shadow-lg p-6 border border-[#E8D6B3] hover:shadow-xl transition duration-300">
-
-                    <div class="text-4xl mb-3">
-                        📦
-                    </div>
 
                     <h6 class="text-gray-500">
                         Total Products
@@ -29,10 +32,6 @@
                 <div
                     class="bg-white rounded-3xl shadow-lg p-6 border border-[#E8D6B3] hover:shadow-xl transition duration-300">
 
-                    <div class="text-4xl mb-3">
-                        🛒
-                    </div>
-
                     <h6 class="text-gray-500">
                         Pre-Order Products
                     </h6>
@@ -45,10 +44,6 @@
 
                 <div
                     class="bg-white rounded-3xl shadow-lg p-6 border border-[#E8D6B3] hover:shadow-xl transition duration-300">
-
-                    <div class="text-4xl mb-3">
-                        🍰
-                    </div>
 
                     <h6 class="text-gray-500">
                         Ready Products
@@ -63,10 +58,6 @@
                 <div
                     class="bg-white rounded-3xl shadow-lg p-6 border border-[#E8D6B3] hover:shadow-xl transition duration-300">
 
-                    <div class="text-4xl mb-3">
-                        💳
-                    </div>
-
                     <h6 class="text-gray-500">
                         Total Sales
                     </h6>
@@ -78,8 +69,6 @@
                 </div>
 
             </div>
-
-            <!-- Revenue -->
 
             <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 mt-8 text-white">
 
@@ -96,8 +85,6 @@
                 </p>
 
             </div>
-
-            <!-- Latest Transactions -->
 
             <div class="bg-white rounded-3xl shadow-xl mt-8 overflow-hidden">
 
@@ -186,10 +173,6 @@
                                 <tr>
 
                                     <td colspan="6" class="text-center py-12 text-gray-500">
-
-                                        <div class="text-5xl mb-3">
-                                            🍰
-                                        </div>
 
                                         Belum ada transaksi.
 

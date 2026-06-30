@@ -4,7 +4,6 @@
 
         <div class="max-w-7xl mx-auto px-6">
 
-            <!-- Hero -->
             <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
                 <div class="flex justify-between items-center">
@@ -12,11 +11,11 @@
                     <div>
 
                         <h1 class="text-4xl font-bold">
-                            Sales Management 💳
+                            Sales Management
                         </h1>
 
                         <p class="mt-2 opacity-90">
-                            View, manage and record all customer sales transactions.
+                            View, manage and record all sales transactions.
                         </p>
 
                     </div>
@@ -31,8 +30,6 @@
                 </div>
 
             </div>
-
-            <!-- Table -->
 
             <div class="bg-white rounded-3xl shadow-xl border border-[#E8D6B3] overflow-hidden">
 
@@ -110,7 +107,7 @@
                                             <a href="{{ route('sales.edit', $sale->id) }}"
                                                 class="bg-[#E8D6B3] hover:bg-[#D9C7A6] text-[#4A2A16] font-semibold px-4 py-2 rounded-xl transition">
 
-                                                ✏ Edit
+                                                Edit
 
                                             </a>
 
@@ -123,7 +120,7 @@
                                                     onclick="return confirm('Yakin ingin menghapus data ini?')"
                                                     class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition">
 
-                                                    🗑 Delete
+                                                    Delete
 
                                                 </button>
 
@@ -140,10 +137,6 @@
                                 <tr>
 
                                     <td colspan="8" class="text-center py-16">
-
-                                        <div class="text-6xl mb-4">
-                                            🧾
-                                        </div>
 
                                         <h2 class="text-xl text-gray-500 font-semibold">
                                             No sales data available.

@@ -4,11 +4,10 @@
 
         <div class="max-w-3xl mx-auto px-6">
 
-            <!-- Hero -->
-            <div class="bg-gradient-to-r from-[#6B3D1E] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
+            <div class="bg-gradient-to-r from-[#8B6F47] to-[#0000] rounded-3xl shadow-xl p-8 text-white mb-8">
 
                 <h1 class="text-4xl font-bold">
-                    Add User 👤
+                    Add User
                 </h1>
 
                 <p class="mt-2 opacity-90">
@@ -24,7 +23,6 @@
 
                     @csrf
 
-                    <!-- Name -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -36,7 +34,6 @@
 
                     </div>
 
-                    <!-- Email -->
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -48,7 +45,27 @@
 
                     </div>
 
-                    <!-- Password -->
+                    <div class="mb-6">
+
+                        <label class="block mb-2 font-semibold text-[#4A2A16]">
+                            Role
+                        </label>
+
+                        <select name="role"
+                            class="w-full rounded-xl border border-[#D9C7A6] px-4 py-3 focus:ring-2 focus:ring-[#8B6F47] focus:border-[#8B6F47]">
+
+                            <option value="admin">
+                                Admin
+                            </option>
+
+                            <option value="user">
+                                User
+                            </option>
+
+                        </select>
+
+                    </div>
+
                     <div class="mb-6">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -61,7 +78,6 @@
 
                     </div>
 
-                    <!-- Confirm Password -->
                     <div class="mb-8">
 
                         <label class="block mb-2 font-semibold text-[#4A2A16]">
@@ -74,7 +90,6 @@
 
                     </div>
 
-                    <!-- Button -->
                     <div class="flex justify-end gap-3">
 
                         <a href="{{ route('users.index') }}"
@@ -87,7 +102,7 @@
                         <button type="submit"
                             class="bg-[#6B3D1E] hover:bg-[#4A2A16] text-white px-6 py-3 rounded-xl shadow-md transition">
 
-                            ➕ Save User
+                            Save User
 
                         </button>
 

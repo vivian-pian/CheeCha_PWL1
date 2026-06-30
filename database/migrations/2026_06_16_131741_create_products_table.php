@@ -16,7 +16,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('product_name');
-            $table->decimal('price');
+            $table->integer('price');
 
             $table->enum('status', [
                 'pre-order',

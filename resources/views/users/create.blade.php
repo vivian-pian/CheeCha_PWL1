@@ -4,7 +4,7 @@
 
         <div class="max-w-3xl mx-auto px-6">
 
-            <div class="bg-gradient-to-r from-[#8B6F47] to-[#0000] rounded-3xl shadow-xl p-8 text-white mb-8">
+            <div class="bg-gradient-to-r from-[#8B6F47] to-[#8B5E3C] rounded-3xl shadow-xl p-8 text-white mb-8">
 
                 <h1 class="text-4xl font-bold">
                     Add User

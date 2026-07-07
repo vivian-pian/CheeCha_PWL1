@@ -79,7 +79,7 @@
                                     </td>
 
                                     <td class="px-6 py-4">
-                                        {{$product->price}}
+                                        Rp {{ number_format($product->price, 0, ',', '.') }}
                                     </td>
 
                                     <td class="px-6 py-4 text-center">

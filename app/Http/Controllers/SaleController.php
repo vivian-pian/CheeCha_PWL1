@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $sales = Sale::with([
@@ -20,20 +17,12 @@ class SaleController extends Controller
 
         return view('sales.index', compact('sales'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $products = Product::all();
 
         return view('sales.create', compact('products'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -57,18 +46,10 @@ class SaleController extends Controller
             ->route('sales.index')
             ->with('success', 'Data sales berhasil ditambahkan');
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Sale $sale)
     {
         return view('sales.show', compact('sale'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Sale $sale)
     {
         $products = Product::all();
@@ -78,10 +59,6 @@ class SaleController extends Controller
             'products'
         ));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Sale $sale)
     {
         $request->validate([
@@ -105,10 +82,6 @@ class SaleController extends Controller
             ->route('sales.index')
             ->with('success', 'Data sales berhasil diupdate');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Sale $sale)
     {
         $sale->delete();
